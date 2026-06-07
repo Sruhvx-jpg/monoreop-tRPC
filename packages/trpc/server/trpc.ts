@@ -44,7 +44,7 @@ const fixedWindowRateLimiter = tRPCContext.middleware(async ({ctx, next}: any) =
 })
 
 const verifyToken = tRPCContext.middleware(async ({ ctx, next }: any) => {
-  const token = ctx.req.cookies?.accessToken;
+  const token = ctx.getAuthToken()
 
   if (!token) {
     throw new TRPCError({

@@ -20,10 +20,19 @@ importers:
       dotenv-cli:
         specifier: ^11.0.0
         version: 11.0.0
+      express:
+        specifier: ^5.2.1
+        version: 5.2.1
       ioredis:
         specifier: ^5.11.0
         version: 5.11.0
+      trpc-monorepo:
+        specifier: 'link:'
+        version: 'link:'
     devDependencies:
+      '@types/express':
+        specifier: ^5.0.6
+        version: 5.0.6
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
@@ -413,6 +422,9 @@ importers:
       '@trpc/server':
         specifier: ^11.8.1
         version: 11.8.1(typescript@5.9.3)
+      express:
+        specifier: ^5.2.1
+        version: 5.2.1
       jsonwebtoken:
         specifier: ^9.0.3
         version: 9.0.3

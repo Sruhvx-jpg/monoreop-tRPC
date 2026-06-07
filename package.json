@@ -11,6 +11,7 @@
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "prettier": "^3.7.4",
     "turbo": "^2.7.2",
     "typescript": "5.9.2"
@@ -24,6 +25,8 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "dotenv-cli": "^11.0.0",
-    "ioredis": "^5.11.0"
+    "express": "^5.2.1",
+    "ioredis": "^5.11.0",
+    "trpc-monorepo": "link:"
   }
 }
