@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+#__next,
+body,
+html {
+  min-height: 100%;
+}
+
+main {
+  min-height: 100vh;
+}
