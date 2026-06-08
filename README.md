@@ -16,13 +16,20 @@ A starter monorepo with tRPC, Next.js web apps, a Tauri desktop app, and a share
 
 ## Setup
 
-1. Install dependencies:
+1. Make the setup script executable and run it to inject environment values where needed:
+
+   ```bash
+   chmod +x ./setup.sh
+   ./setup.sh
+   ```
+
+2. Install dependencies:
 
    ```bash
    pnpm install
    ```
 
-2. Configure environment variables:
+3. Configure environment variables, if needed:
 
    - There is a root `.env` and `.env` files in some workspace packages.
    - Adjust values as needed for your local database, API, or development environment.
