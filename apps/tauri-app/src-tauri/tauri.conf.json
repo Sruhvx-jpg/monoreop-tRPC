@@ -4,10 +4,10 @@
   "version": "0.1.0",
   "identifier": "com.dron.tauri-app",
   "build": {
-    "beforeDevCommand": "pnpm dev",
+    "beforeDevCommand": "next dev --port 3001",
     "devUrl": "http://localhost:3001",
-    "beforeBuildCommand": "pnpm build",
-    "frontendDist": "../dist"
+    "beforeBuildCommand": "pnpm --filter tauri-app build",
+    "frontendDist": "../.next"
   },
   "app": {
     "windows": [
