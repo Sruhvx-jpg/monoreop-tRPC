@@ -5,6 +5,7 @@ import { createContext } from "./context";
 
 import { redis } from "../utils/initRedis"
 import {verifyAccTok} from "../utils/jwtUtils"
+import { getAuthToken } from "./utils/cookie";
 
 
 //++++++++++++ This file has middle integrateed for procedures +++++++++++++++
@@ -44,7 +45,7 @@ const fixedWindowRateLimiter = tRPCContext.middleware(async ({ctx, next}: any) =
 })
 
 const verifyToken = tRPCContext.middleware(async ({ ctx, next }: any) => {
-  const token = ctx.getAuthToken()
+  const token = getAuthToken(ctx);
 
   if (!token) {
     throw new TRPCError({
