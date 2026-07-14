@@ -5,17 +5,18 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/jsonwebtoken": "^9.0.10",
+    "@types/express": "^5.0.6",
+    "@types/express-serve-static-core": "^5.0.6",
+    "@types/qs": "^6.9.15",
     "dotenv-cli": "^11.0.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "@repo/services": "workspace:*",
+    "@repo/utils": "workspace:*",
     "@trpc/client": "^11.8.1",
     "@trpc/server": "^11.8.1",
     "express": "^5.2.1",
-    "ioredis": "^5.11.0",
-    "jsonwebtoken": "^9.0.3",
     "trpc-to-openapi": "^3.1.0",
     "zod": "^4.3.5"
   }

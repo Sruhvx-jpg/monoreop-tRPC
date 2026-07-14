@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 
 const SALT_ROUNDS = 12;
 
-export async function hashIT(password: string){
+export async function hashIT(password: string): Promise<string> {
   if (!password || typeof password !== "string") {
     throw new Error("Password must be a valid string");
   }

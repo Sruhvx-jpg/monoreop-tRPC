@@ -1,7 +1,7 @@
 import Redis from "ioredis";
-import "dotenv/config"
+import "dotenv/config";
 
-const url: string = process.env.REDIS_URL!
+const url = process.env.REDIS_URL || "redis://localhost:6379";
 
 export const redis = new Redis(url, {
   maxRetriesPerRequest: null,
