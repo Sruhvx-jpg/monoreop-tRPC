@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import { logger } from "@repo/logger";
 import cors from "cors";
 
@@ -98,9 +98,11 @@ app.use((req, res) => {
 })
 
 // global error handlers
-app.use((err: any, req: any, res: any, next: any) => {
+app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
   logger.error("Error:", err);
-  res.status(err.status || 500).json({ error: err.message || "Internal server error" });
+  const status = err && typeof err === "object" && "status" in err && typeof err.status === "number" ? err.status : 500;
+  const message = err && typeof err === "object" && "message" in err && typeof err.message === "string" ? err.message : "Internal server error";
+  res.status(status).json({ error: message });
 })
 
 export default app;

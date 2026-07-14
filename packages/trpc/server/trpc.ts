@@ -3,8 +3,7 @@ import { OpenApiMeta } from "trpc-to-openapi";
 
 import { createContext } from "./context";
 
-import { redis } from "../utils/initRedis"
-import {verifyAccTok} from "../utils/jwtUtils"
+import { redis, verifyAccTok } from "@repo/utils";
 import { getAuthToken } from "./utils/cookie";
 
 
@@ -22,7 +21,7 @@ export const router = tRPCContext.router;
 
 
 // middlewares
-const fixedWindowRateLimiter = tRPCContext.middleware(async ({ctx, next}: any) => {
+const fixedWindowRateLimiter = tRPCContext.middleware(async ({ ctx, next }) => {
     const ip = ctx.req.ip
 
   const key = `FWRL:${ip}`
@@ -44,7 +43,7 @@ const fixedWindowRateLimiter = tRPCContext.middleware(async ({ctx, next}: any) =
   return next();
 })
 
-const verifyToken = tRPCContext.middleware(async ({ ctx, next }: any) => {
+const verifyToken = tRPCContext.middleware(async ({ ctx, next }) => {
   const token = getAuthToken(ctx);
 
   if (!token) {
