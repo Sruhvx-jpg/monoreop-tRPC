@@ -1,0 +1,343 @@
+/* Inngest Dev Server Dashboard Stylesheet (Black, Dark Grey & Red Palette) */
+
+:root {
+  --inngest-bg: #000000;
+  --inngest-surface-900: #0a0a0a;
+  --inngest-surface-800: #121212;
+  --inngest-surface-700: #1a1a1a;
+  --inngest-border: #2a2a2a;
+  --inngest-border-hover: #3a3a3a;
+  --inngest-text: #ffffff;
+  --inngest-muted: #a1a1aa;
+  --inngest-subtle: #71717a;
+  --inngest-red: #ef4444;
+  --inngest-red-hover: #dc2626;
+  --inngest-red-light: #f87171;
+  --inngest-red-bg: rgba(239, 68, 68, 0.15);
+  --inngest-success: #10b981;
+  --inngest-success-bg: rgba(16, 185, 129, 0.15);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+.dashboard {
+  min-height: 100vh;
+  background-color: var(--inngest-bg);
+  color: var(--inngest-text);
+  font-family: var(--font-sans);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  height: 56px;
+  background: var(--inngest-surface-900);
+  border-bottom: 1px solid var(--inngest-border);
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brandLogo {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #991b1b 100%);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.35);
+}
+
+.brandName {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+}
+
+.brandName span {
+  color: var(--inngest-red-light);
+}
+
+.subNavbar {
+  background: var(--inngest-surface-900);
+  border-bottom: 1px solid var(--inngest-border);
+  padding: 0 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+}
+
+.tabBtn {
+  background: transparent;
+  border: none;
+  color: var(--inngest-muted);
+  padding: 0.8rem 1.2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.tabBtn:hover {
+  color: var(--inngest-text);
+}
+
+.tabBtnActive {
+  color: var(--inngest-red-light);
+  border-bottom-color: var(--inngest-red);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.tabBadge {
+  background: var(--inngest-border);
+  color: var(--inngest-muted);
+  font-size: 0.75rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+}
+
+.mainContent {
+  padding: 1.5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.kpiBar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.kpiCard {
+  background: var(--inngest-surface-800);
+  border: 1px solid var(--inngest-border);
+  border-top: 2px solid var(--inngest-red);
+  border-radius: 0.625rem;
+  padding: 1rem 1.25rem;
+}
+
+.kpiTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--inngest-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kpiVal {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--inngest-text);
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.tableContainer {
+  background: var(--inngest-surface-800);
+  border: 1px solid var(--inngest-border);
+  border-radius: 0.625rem;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.th {
+  background: var(--inngest-surface-900);
+  color: var(--inngest-muted);
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--inngest-border);
+  font-size: 0.725rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--inngest-border);
+  color: var(--inngest-text);
+  vertical-align: middle;
+}
+
+.tr {
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.tr:hover {
+  background: var(--inngest-surface-700);
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.25rem;
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.statusCompleted {
+  background: var(--inngest-success-bg);
+  color: var(--inngest-success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.statusFailed {
+  background: var(--inngest-red-bg);
+  color: var(--inngest-red);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.codeBadge {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background: var(--inngest-bg);
+  border: 1px solid var(--inngest-border);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  color: var(--inngest-red-light);
+}
+
+.methodQuery {
+  color: var(--inngest-red-light);
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.methodMutation {
+  color: var(--inngest-red-light);
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.funcCard {
+  background: var(--inngest-surface-800);
+  border: 1px solid var(--inngest-border);
+  border-radius: 0.625rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all 0.2s;
+}
+
+.funcCard:hover {
+  border-color: var(--inngest-border-hover);
+  background: var(--inngest-surface-700);
+}
+
+.panelBox {
+  background: var(--inngest-surface-800);
+  border: 1px solid var(--inngest-border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.panelLabel {
+  font-size: 0.725rem;
+  color: var(--inngest-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.button {
+  background: var(--inngest-surface-800);
+  border: 1px solid var(--inngest-border);
+  color: var(--inngest-text);
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  border: none;
+}
+
+.btnPrimary:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+}
+
+.input {
+  background: var(--inngest-surface-800);
+  border: 1px solid var(--inngest-border);
+  color: var(--inngest-text);
+  padding: 0.5rem 0.85rem;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--inngest-red);
+}
