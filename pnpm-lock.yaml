@@ -4,6 +4,15 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  keyv: 4.5.4
+  flat-cache: 4.0.1
+  file-entry-cache: 8.0.0
+  cacheable: 1.8.8
+  cacheable-request: 10.2.14
+  cache-manager: 6.4.0
+  axios: 1.7.9
+
 importers:
 
   .:
@@ -45,6 +54,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@repo/innjest':
+        specifier: workspace:*
+        version: link:../../packages/innjest
       '@repo/logger':
         specifier: workspace:*
         version: link:../../packages/logger
@@ -245,6 +257,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.2.8
         version: 1.2.8(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@repo/innjest':
+        specifier: workspace:*
+        version: link:../../packages/innjest
       '@repo/trpc':
         specifier: workspace:*
         version: link:../../packages/trpc
@@ -425,6 +440,46 @@ importers:
         specifier: ^8.50.0
         version: 8.50.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)
 
+  packages/innjest:
+    dependencies:
+      '@trpc/server':
+        specifier: ^11.8.1
+        version: 11.8.1(typescript@5.9.3)
+      express:
+        specifier: ^5.2.1
+        version: 5.2.1
+      nanoid:
+        specifier: ^5.1.5
+        version: 5.1.5
+      recharts:
+        specifier: ^2.15.4
+        version: 2.15.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/express':
+        specifier: ^5.0.6
+        version: 5.0.6
+      '@types/react':
+        specifier: ^19.2.2
+        version: 19.2.2
+      '@types/react-dom':
+        specifier: ^19.2.2
+        version: 19.2.2(@types/react@19.2.2)
+      react:
+        specifier: ^19.2.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.0(react@19.2.0)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
   packages/logger:
     dependencies:
       winston:
@@ -474,6 +529,9 @@ importers:
 
   packages/trpc:
     dependencies:
+      '@repo/innjest':
+        specifier: workspace:*
+        version: link:../innjest
       '@repo/services':
         specifier: workspace:*
         version: link:../services

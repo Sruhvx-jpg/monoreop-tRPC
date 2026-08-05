@@ -21,6 +21,17 @@
   "engines": {
     "node": ">=18"
   },
+  "pnpm": {
+    "overrides": {
+      "keyv": "4.5.4",
+      "flat-cache": "4.0.1",
+      "file-entry-cache": "8.0.0",
+      "cacheable": "1.8.8",
+      "cacheable-request": "10.2.14",
+      "cache-manager": "6.4.0",
+      "axios": "1.7.9"
+    }
+  },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
