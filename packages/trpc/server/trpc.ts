@@ -5,7 +5,7 @@ import { createContext } from "./context";
 
 import { redis, verifyAccTok } from "@repo/utils";
 import { getAuthToken } from "./utils/cookie";
-
+import { createAnalyticsMiddleware } from "@repo/innjest/server";
 
 //++++++++++++ This file has middle integrateed for procedures +++++++++++++++
 // you can add the middleware to procedure using the ".use()" 
@@ -21,6 +21,8 @@ export const router = tRPCContext.router;
 
 
 // middlewares
+const analyticsMiddleware = tRPCContext.middleware(createAnalyticsMiddleware());
+
 const fixedWindowRateLimiter = tRPCContext.middleware(async ({ ctx, next }) => {
     const ip = ctx.req.ip
 
@@ -71,5 +73,6 @@ const verifyToken = tRPCContext.middleware(async ({ ctx, next }) => {
 });
 
 // procedures
-export const TokenBasedProcedure = tRPCContext.procedure.use(verifyToken)
-export const publicProcedure = tRPCContext.procedure;
+export const TokenBasedProcedure = tRPCContext.procedure.use(verifyToken).use(analyticsMiddleware);
+export const publicProcedure = tRPCContext.procedure.use(analyticsMiddleware);
+
