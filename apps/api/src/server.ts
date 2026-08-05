@@ -5,10 +5,46 @@ import cors from "cors";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { generateOpenApiDocument, createOpenApiExpressMiddleware } from "trpc-to-openapi";
 import { apiReference } from "@scalar/express-api-reference";
+import { createAnalyticsRoutes, registerTRPCEndpoint, analyticsCollector } from "@repo/innjest/server";
 
 import { serverRouter, createContext } from "@repo/trpc/server";
 
 import { env } from "./env";
+
+// Register default endpoints for analytics tracking
+registerTRPCEndpoint({
+  name: "auth.login",
+  endpoint: "auth.login",
+  method: "mutation",
+  isAuthRequired: false,
+  rateLimit: { enabled: true, requests: 5, windowMs: 60000, type: "IP" },
+  tags: ["auth"],
+});
+
+registerTRPCEndpoint({
+  name: "auth.me",
+  endpoint: "auth.me",
+  method: "query",
+  isAuthRequired: true,
+  tags: ["auth"],
+});
+
+registerTRPCEndpoint({
+  name: "user.profile",
+  endpoint: "user.profile",
+  method: "query",
+  isAuthRequired: true,
+  tags: ["user"],
+});
+
+registerTRPCEndpoint({
+  name: "health.getHealth",
+  endpoint: "health.getHealth",
+  method: "query",
+  isAuthRequired: false,
+  description: "Server health status check",
+  tags: ["system", "health"],
+});
 
 export const app = express();
 const openApiDocument = generateOpenApiDocument(serverRouter, {
@@ -66,7 +102,16 @@ app.get("/", (req, res) => {
 })
 
 app.get("/health", (req, res) => {
-  return res.json({ message: "Streamyst server is healthy", healthy: true });
+  const callId = analyticsCollector.startCall(
+    "health.getHealth",
+    "query",
+    undefined,
+    req.ip
+  );
+  const responseData = { message: "Streamyst server is healthy", healthy: true };
+  const responseSize = JSON.stringify(responseData).length;
+  analyticsCollector.endCall(callId, 200, responseSize);
+  return res.json(responseData);
 })
 
 logger.debug(`openapi.json: ${env.BASE_URL}/openapi.json`);
@@ -76,6 +121,13 @@ app.get("/openapi.json", (req, res) => {
 
 logger.debug(`docs: ${env.BASE_URL}/docs`);
 app.use("/docs", apiReference({ url: "/openapi.json" }));
+
+app.use("/api/analytics", createAnalyticsRoutes());
+app.get("/analytics", (req, res) => {
+  res.redirect("/api/analytics/dashboard");
+});
+
+
 
 app.use(
   "/api",
